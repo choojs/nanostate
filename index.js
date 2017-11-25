@@ -18,7 +18,7 @@ Nanostate.prototype = Object.create(Nanobus.prototype)
 
 Nanostate.prototype.emit = function (eventName) {
   var nextState = this.transitions[this.state][eventName]
-  assert.ok(nextState, `nanostate: invalid transition ${this.state} -> ${eventName}`)
+  assert.ok(nextState, `nanostate.emit: invalid transition ${this.state} -> ${eventName}`)
 
   this.state = nextState
   Nanobus.prototype.emit.call(this, eventName)
