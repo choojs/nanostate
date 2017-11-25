@@ -7,6 +7,9 @@
     "start": "node .",
     "test": "standard && node test"
   },
+  "browser": {
+    "assert": "nanoassert"
+  },
   "dependencies": {
     "nanoassert": "^1.1.0",
     "nanobus": "^4.3.1"
