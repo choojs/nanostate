@@ -1,0 +1,35 @@
+{
+  "name": "nanostate",
+  "description": "Small Finite State Machine implementation",
+  "repository": "choojs/nanostate",
+  "version": "1.0.0",
+  "scripts": {
+    "start": "node .",
+    "test": "standard && node test"
+  },
+  "dependencies": {
+    "nanoassert": "^1.1.0",
+    "nanobus": "^4.3.1"
+  },
+  "devDependencies": {
+    "dependency-check": "^2.9.1",
+    "standard": "^10.0.3",
+    "tape": "^4.8.0"
+  },
+  "keywords": [
+    "fsm",
+    "finite",
+    "state",
+    "machine",
+    "automata",
+    "small",
+    "minimal",
+    "browser",
+    "fast",
+    "history",
+    "concurrent",
+    "chart",
+    "charts"
+  ],
+  "license": "Apache-2.0"
+}
