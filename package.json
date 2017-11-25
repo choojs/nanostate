@@ -2,7 +2,7 @@
   "name": "nanostate",
   "description": "Small Finite State Machine implementation",
   "repository": "choojs/nanostate",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "scripts": {
     "start": "node .",
     "test": "standard && node test"
