@@ -46,15 +46,15 @@ machine.event('powerOutage', nanostate('flashingRed', {
   flashingRed: { powerRestored: 'green' }
 }))
 
-state.emit('timer')
+machine.emit('timer')
 console.log(machine.state)
 // => 'yellow'
 
-state.emit('powerOutage')
+machine.emit('powerOutage')
 console.log(machine.state)
 // => 'flashingRed'
 
-state.emit('powerRestored')
+machine.emit('powerRestored')
 console.log(machine.state)
 // => 'green'
 ```
