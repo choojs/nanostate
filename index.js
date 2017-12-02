@@ -10,6 +10,8 @@ function Nanostate (initialState, transitions) {
 
   this.transitions = transitions
   this.state = initialState
+  this.parent = null
+  this.children = []
 
   Nanobus.call(this)
 }
@@ -23,3 +25,12 @@ Nanostate.prototype.emit = function (eventName) {
   this.state = nextState
   Nanobus.prototype.emit.call(this, eventName)
 }
+
+Nanostate.prototype.event = function (eventName, machine) {
+  assert.equal(typeof eventName, 'string', 'nanostate: eventName should be type string')
+  assert(machine instanceof Nanostate, 'nanostate: machine should be instance of Nanostate')
+  assert(this.events[eventName], 'nanostate: eventName has already been declared')
+  machine.parent = this
+  this.children.push(machine)
+}
+
