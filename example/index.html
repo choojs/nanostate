@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>traffic light example</title>
+  <link rel="stylesheet" href="https://unpkg.com/tachyons@4.9.0/css/tachyons.min.css"/>
+  <style>
+    .flashRed {
+      background-color: rgba(0, 0, 0, 0.1);
+      animation: flash 1s infinite
+    }
+    @keyframes flash {
+      0% {
+        background-color: rgba(0, 0, 0, 0.1);
+      }
+      10% {
+        background-color: rgba(0, 0, 0, 0.1);
+      }
+      50% {
+        background-color: red;
+      }
+    }
+  </style>
+</head>
+<body>
+  <script src="traffic.js"></script>
+</body>
+</html>

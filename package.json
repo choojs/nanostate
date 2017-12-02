@@ -6,7 +6,7 @@
   "scripts": {
     "start": "node .",
     "test": "standard && node test",
-    "example": "budo example/traffic.js --dir example --live --css https://unpkg.com/tachyons@4.9.0/css/tachyons.min.css"
+    "example": "budo example/traffic.js --dir example --live"
   },
   "browser": {
     "assert": "nanoassert"
