@@ -60,7 +60,6 @@ class Timer {
     this.currentTime = duration
     this.callback = callback
     this.timer = null
-    this.onTick = function () {}
   }
 
   reset () {
@@ -74,7 +73,6 @@ class Timer {
       this.currentTime -= 100
       if (this.currentTime <= 0) {
         this.currentTime = this.duration
-        this.onTick()
       }
       this.callback()
     }, 100)
@@ -90,10 +88,6 @@ app.use(function (state, emitter) {
     state.value = vehicleMachine.state
     emitter.emit('render')
   })
-
-  timer.onTick = function () {
-    vehicleMachine.emit('timer')
-  }
 
   var vehicleMachine = nanostate(initialState, {
     green: { timer: 'yellow' },
