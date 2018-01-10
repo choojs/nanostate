@@ -32,7 +32,9 @@ Parallelstate.prototype.emit = function (eventName) {
   var hasCollon = eventName.indexOf(':') >= 0
   assert.ok(hasCollon, `nanostate.emit: invalid transition ${this.state} -> ${eventName}. For parallel nanostate eventName must have a collon ":"`)
 
-  var [scope, event] = eventName.split(':')
+  var eventNameSplitted = eventName.split(':')
+  var scope = eventNameSplitted[0]
+  var event = eventNameSplitted[1]
   assert.ok(scope, `nanostate.emit: invalid scope ${scope} for parallel emitting`)
 
   this.transitions[scope].emit(event)
