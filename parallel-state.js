@@ -4,15 +4,10 @@ var assert = require('assert')
 module.exports = Parallelstate
 
 function Parallelstate (transitions) {
-  if (!(this instanceof Parallelstate)) return new Parallelstate(transitions)
   assert.equal(typeof transitions, 'object', 'nanostate: transitions should be type object')
 
   this.scopes = Object.keys(transitions)
   this.transitions = transitions
-
-  this.scopes.forEach(scope => {
-    assert.ok(transitions[scope] instanceof Nanobus, `parallel expects "${scope}" to have nanostate as transition`)
-  })
 
   Object.defineProperty(this, 'state', {
     get: function () {
