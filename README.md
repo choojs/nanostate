@@ -79,7 +79,7 @@ machine.join('next', nanostate('review', {
 }))
 ```
 
-## Parallel (to be implemented)
+## Parallel
 To be implemented. Sometimes there's multiple parallel states that need
 expressing; `nanostate.parallel` helps with that. For example when editing
 text, a particular piece of text might be `bold`, `italic` and `underlined` at
