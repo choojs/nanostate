@@ -11,8 +11,8 @@ function Parallelstate (transitions) {
 
   Object.defineProperty(this, 'state', {
     get: function () {
-      return this.scopes.reduce((state, scope) => {
-        state[scope] = this.transitions[scope].state
+      return this.scopes.reduce(function (state, scope) {
+        state[scope] = transitions[scope].state
         return state
       }, {})
     }
