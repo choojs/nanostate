@@ -25,7 +25,7 @@ Parallelstate.prototype = Object.create(Nanobus.prototype)
 
 Parallelstate.prototype.emit = function (eventName) {
   var hasColon = eventName.indexOf(':') >= 0
-  assert.ok(hasColon, `nanostate.emit: invalid transition ${this.state} -> ${eventName}. For parallel nanostate eventName must have a collon ":"`)
+  assert.ok(hasColon, `nanostate.emit: invalid transition ${this.state} -> ${eventName}. For parallel nanostate eventName must have a colon ":"`)
 
   var eventNameSplitted = eventName.split(':')
   var scope = eventNameSplitted[0]
