@@ -220,7 +220,7 @@ $ npm install nanostate
 
 ## See Also
 - [Infinitely Better UIs With Finite Automata (video)](https://www.youtube.com/watch?v=VU1NKX6Qkxc&feature=youtu.be)
-- [choojs/fsm-event](https://github.com/yoshuawuyts/fsm-event)
+- [yoshuawuyts/fsm-event](https://github.com/yoshuawuyts/fsm-event)
 - [davidkpiano/xstate](https://github.com/davidkpiano/xstate/)
 
 ## License
