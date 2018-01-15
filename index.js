@@ -1,5 +1,6 @@
 var Nanobus = require('nanobus')
 var assert = require('assert')
+var Parallelstate = require('./parallel-state')
 
 module.exports = Nanostate
 
@@ -22,4 +23,8 @@ Nanostate.prototype.emit = function (eventName) {
 
   this.state = nextState
   Nanobus.prototype.emit.call(this, eventName)
+}
+
+Nanostate.parallel = function (transitions) {
+  return new Parallelstate(transitions)
 }
