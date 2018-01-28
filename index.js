@@ -11,20 +11,56 @@ function Nanostate (initialState, transitions) {
 
   this.transitions = transitions
   this.state = initialState
+  this.submachines = {}
+  this._submachine = null
 
   Nanobus.call(this)
 }
 
 Nanostate.prototype = Object.create(Nanobus.prototype)
 
+Nanostate.prototype.constructor = Nanostate
+
 Nanostate.prototype.emit = function (eventName) {
-  var nextState = this.transitions[this.state][eventName]
+  var nextState = this._next(eventName)
   assert.ok(nextState, `nanostate.emit: invalid transition ${this.state} -> ${eventName}`)
+
+  if (this._submachine && Object.keys(this.transitions).indexOf(nextState) !== -1) {
+    this._unregister()
+  }
 
   this.state = nextState
   Nanobus.prototype.emit.call(this, eventName)
 }
 
+Nanostate.prototype.event = function (eventName, machine) {
+  this.submachines[eventName] = machine
+}
+
 Nanostate.parallel = function (transitions) {
   return new Parallelstate(transitions)
+}
+
+Nanostate.prototype._unregister = function () {
+  if (this._submachine) {
+    this._submachine._unregister()
+    this._submachine = null
+  }
+}
+
+Nanostate.prototype._next = function (eventName) {
+  if (this._submachine) {
+    var nextState = this._submachine._next(eventName)
+    if (nextState) {
+      return nextState
+    }
+  }
+
+  var submachine = this.submachines[eventName]
+  if (submachine) {
+    this._submachine = submachine
+    return submachine.state
+  }
+
+  return this.transitions[this.state][eventName]
 }
