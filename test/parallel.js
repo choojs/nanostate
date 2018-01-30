@@ -2,26 +2,6 @@ var tape = require('tape')
 
 var nanostate = require('../')
 
-var createParallelTransitions = () => ({
-  bold: nanostate('off', {
-    on: { 'toggle': 'off' },
-    off: { 'toggle': 'on' }
-  }),
-  underline: nanostate('off', {
-    on: { 'toggle': 'off' },
-    off: { 'toggle': 'on' }
-  }),
-  italics: nanostate('off', {
-    on: { 'toggle': 'off' },
-    off: { 'toggle': 'on' }
-  }),
-  list: nanostate('none', {
-    none: { bullets: 'bullets', numbers: 'numbers' },
-    bullets: { none: 'none', numbers: 'numbers' },
-    numbers: { bullets: 'bullets', none: 'none' }
-  })
-})
-
 tape('create parallel state', (assert) => {
   var machine = nanostate.parallel(createParallelTransitions())
 
@@ -57,3 +37,25 @@ tape('change states in parallel machine', (assert) => {
 
   assert.end()
 })
+
+function createParallelTransitions () {
+  return {
+    bold: nanostate('off', {
+      on: { 'toggle': 'off' },
+      off: { 'toggle': 'on' }
+    }),
+    underline: nanostate('off', {
+      on: { 'toggle': 'off' },
+      off: { 'toggle': 'on' }
+    }),
+    italics: nanostate('off', {
+      on: { 'toggle': 'off' },
+      off: { 'toggle': 'on' }
+    }),
+    list: nanostate('none', {
+      none: { bullets: 'bullets', numbers: 'numbers' },
+      bullets: { none: 'none', numbers: 'numbers' },
+      numbers: { bullets: 'bullets', none: 'none' }
+    })
+  }
+}
