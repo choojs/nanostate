@@ -28,7 +28,7 @@ console.log(machine.state)
 // => 'green'
 ```
 
-## Hierarchical (to be implemented)
+## Hierarchical
 Let's implement a traffic light that flashes red whenever there's a power
 outage. Instead of adding a `powerOutage` event to each normal state, we
 introduce a hierarchy which allows any normal state to emit the `powerOutage`
