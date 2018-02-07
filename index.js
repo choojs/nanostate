@@ -30,7 +30,7 @@ Nanostate.prototype.emit = function (eventName) {
   }
 
   this.state = nextState
-  Nanobus.prototype.emit.call(this, eventName)
+  Nanobus.prototype.emit.call(this, nextState)
 }
 
 Nanostate.prototype.event = function (eventName, machine) {
