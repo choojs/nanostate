@@ -27,3 +27,16 @@ tape('change state', function (assert) {
   ])
   assert.end()
 })
+
+tape('emit events', function (assert) {
+  var machine = nanostate('idle', {
+    idle: { click: 'loading' }
+  })
+
+  machine.on('loading', function () {
+    assert.pass('an event named after the new state is emitted when state changes')
+    assert.end()
+  })
+
+  machine.emit('click')
+})
