@@ -23,7 +23,7 @@ Nanostate.prototype.constructor = Nanostate
 
 Nanostate.prototype.emit = function (eventName) {
   var nextState = this._next(eventName)
-  assert.ok(nextState, `nanostate.emit: invalid transition ${this.state} -> ${eventName}`)
+  assert.ok(nextState, 'nanostate.emit: invalid transition' + this.state + '->' + eventName)
 
   if (this._submachine && Object.keys(this.transitions).indexOf(nextState) !== -1) {
     this._unregister()
