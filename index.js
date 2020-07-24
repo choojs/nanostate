@@ -13,6 +13,7 @@ function Nanostate (initialState, transitions) {
   this.state = initialState
   this.submachines = {}
   this._submachine = null
+  this.guards = {}
 
   Nanobus.call(this)
 }
@@ -20,6 +21,10 @@ function Nanostate (initialState, transitions) {
 Nanostate.prototype = Object.create(Nanobus.prototype)
 
 Nanostate.prototype.constructor = Nanostate
+
+Nanostate.prototype.guard = function (eventName, cb) {
+  this.guards[eventName] = cb
+}
 
 Nanostate.prototype.emit = function (eventName) {
   var nextState = this._next(eventName)
@@ -29,6 +34,9 @@ Nanostate.prototype.emit = function (eventName) {
     this._unregister()
   }
 
+  if (this.guards[eventName] && (this.guards[eventName]() === false)) {
+    return
+  }
   this.state = nextState
   Nanobus.prototype.emit.call(this, nextState)
 }

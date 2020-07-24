@@ -117,6 +117,33 @@ console.log(machine.state)
 // }
 ```
 
+## Guard
+
+Sometimes you may want a machine to be guarded against moving to a specific state based on some condition. You can encapsulate this logic as part of your machine. For example, say we have a door and a lock:
+
+```js
+const door = nanostate("closed", {
+  closed: { open: "open", light_push: "ajar" },
+  ajar: { close: "closed", open: "open" },
+  open: { close: "closed" },
+});
+const lock = nanostate("unlocked", {
+  unlocked: { lock: "locked" },
+  locked: { unlock: "unlocked" },
+});
+```
+
+If the door is closed, the door cannot be opened unless it is unlocked. Likewise, the door cannot be lightly pushed unless it is also unlocked.
+
+```js
+door.guard("open", () => {
+  return lockState.state === "unlocked";
+});
+door.guard("light_push", () => {
+  return lockState.state === "unlocked";
+});
+```
+
 ## Nanocomponent
 Usage in combination with
 [nanocomponent](https://github.com/choojs/nanocomponent) to create stateful UI
