@@ -23,6 +23,7 @@ Nanostate.prototype.constructor = Nanostate
 
 Nanostate.prototype.emit = function (eventName) {
   var nextState = this._next(eventName)
+
   assert.ok(nextState, 'nanostate.emit: invalid transition' + this.state + '->' + eventName)
 
   if (this._submachine && Object.keys(this.transitions).indexOf(nextState) !== -1) {
@@ -60,6 +61,10 @@ Nanostate.prototype._next = function (eventName) {
   if (submachine) {
     this._submachine = submachine
     return submachine.state
+  }
+
+  if (Object.keys(this.transitions[this.state]).indexOf(eventName) === -1 && Object.keys(this.transitions).indexOf('_any') !== -1) {
+    return this.transitions['_any'][eventName]
   }
 
   return this.transitions[this.state][eventName]
