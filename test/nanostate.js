@@ -40,3 +40,24 @@ tape('emit events', function (assert) {
 
   machine.emit('click')
 })
+
+tape('global transitions', function (assert) {
+  var machine = nanostate('green', {
+    '*': { stop: 'red' },
+    green: { toYellow: 'yellow' },
+    yellow: { toRed: 'red' },
+    red: { toGreen: 'green' }
+  })
+
+  move(assert, machine, [
+    ['toYellow', 'yellow'],
+    ['stop', 'red'],
+    ['toGreen', 'green'],
+    ['stop', 'red'],
+    ['toGreen', 'green'],
+    ['toYellow', 'yellow'],
+    ['toRed', 'red'],
+    ['stop', 'red']
+  ])
+  assert.end()
+})
