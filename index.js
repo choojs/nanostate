@@ -62,5 +62,10 @@ Nanostate.prototype._next = function (eventName) {
     return submachine.state
   }
 
+  if (!Object.prototype.hasOwnProperty.call(this.transitions[this.state], eventName) &&
+      Object.prototype.hasOwnProperty.call(this.transitions, '*')) {
+    return this.transitions['*'][eventName]
+  }
+
   return this.transitions[this.state][eventName]
 }
