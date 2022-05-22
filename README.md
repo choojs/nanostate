@@ -225,6 +225,10 @@ passed.
 Trigger a callback when a certain state is entered. Useful to trigger side
 effects upon state change.
 
+### `machine.onchange(cb)`
+Trigger a callback when any state is entered. Useful to trigger side
+effects upon state change.
+
 ### `state = machine.state`
 Return the current state.
 
